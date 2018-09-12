@@ -7,8 +7,8 @@
 #define Relay 5                             // PD5 - ATmega8A - управление реле.
 
 const int tryReset = 5;
-const unsigned long timeWtachdog = 30000;  //60секунд
-const unsigned long timeWaitReset = 30000; //60секунд
+const unsigned long timeWtachdog = 10000;  //60секунд
+const unsigned long timeWaitReset = 10000; //60секунд
 const unsigned long ResetTime = 10000;     //60секунд
 unsigned long currentTime, loopTime;
 
@@ -18,8 +18,8 @@ bool errorReset = false;
 //Установки при запуске платы
 void setup() {
   //Уствновка настроек порта Status
-  pinMode(StatusPin, OUTPUT);
-  digitalWrite(StatusPin, HIGH);
+  pinMode(StatusPin, INPUT);
+  //digitalWrite(StatusPin, HIGH);
   //Установка прота Relay
   pinMode(Relay, OUTPUT);
   digitalWrite(Relay, LOW);
@@ -31,7 +31,7 @@ void setup() {
 void loop() {
   
   //Сбрасываем счётчик если есть сигнал от Envilog
-  if(digitalRead(StatusPin) == LOW){
+  if(digitalRead(StatusPin) == HIGH){
     currentTime = millis();
     cnt = 0;
     }
