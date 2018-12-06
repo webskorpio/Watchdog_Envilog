@@ -22,6 +22,8 @@ void setup() {
   //digitalWrite(StatusPin, HIGH);
   //Установка прота Relay
   pinMode(Relay, OUTPUT);
+    pinMode(6, OUTPUT);
+      pinMode(7, OUTPUT);
   digitalWrite(Relay, LOW);
  
   currentTime = millis();
@@ -29,7 +31,13 @@ void setup() {
 
 //Старт основной программы
 void loop() {
-  
+    digitalWrite(6, HIGH);
+    digitalWrite(7, LOW);
+    delay(2000);
+    digitalWrite(7, HIGH);
+     digitalWrite(6, LOW);
+delay(2000);
+  /*
   //Сбрасываем счётчик если есть сигнал от Envilog
   if(digitalRead(StatusPin) == HIGH){
     currentTime = millis();
@@ -54,4 +62,5 @@ void reset(){
     delay(5000);
     digitalWrite(Relay, LOW);
     currentTime = millis() + ResetTime;
+*/
 }
